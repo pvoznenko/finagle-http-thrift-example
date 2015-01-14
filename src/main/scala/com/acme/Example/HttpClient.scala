@@ -38,7 +38,7 @@ object HttpClient {
   def main(args: Array[String]) {
     val clientWithoutErrorHandling: Service[HttpRequest, HttpResponse] = ClientBuilder()
       .codec(Http())
-      .hosts(new InetSocketAddress(8080))
+      .hosts(new InetSocketAddress(8082))
       .hostConnectionLimit(1)
       .build()
 
