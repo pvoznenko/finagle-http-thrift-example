@@ -5,7 +5,6 @@ import com.acme.Example.thriftscala.Hello
 import com.acme.Example.thriftscala.Hello.FinagledService
 import com.twitter.finagle.builder.ServerBuilder
 import com.twitter.finagle.thrift.ThriftServerFramedCodec
-import com.twitter.finagle.tracing.DefaultTracer
 import com.twitter.util.Future
 import org.apache.thrift.protocol.TBinaryProtocol.Factory
 
@@ -24,7 +23,6 @@ object ThriftServer {
     ServerBuilder()
       .bindTo(new InetSocketAddress(8081))
       .codec(ThriftServerFramedCodec())
-      .tracer(DefaultTracer)
       .name("thriftserver")
       .build(service)
   }

@@ -1,8 +1,5 @@
 package com.acme.Example
 
-import com.twitter.finagle.stats.DefaultStatsReceiver
-import com.twitter.finagle.tracing.{Trace, DefaultTracer}
-import com.twitter.finagle.zipkin.thrift.ZipkinTracer
 import com.twitter.finagle.{Service, SimpleFilter}
 import org.jboss.netty.handler.codec.http._
 import org.jboss.netty.handler.codec.http.HttpResponseStatus._
@@ -67,7 +64,7 @@ object HttpServer {
       val response = new DefaultHttpResponse(HTTP_1_1, OK)
 
       ThriftClient()
-Trace.record("do stuff!")
+
       response.setContent(copiedBuffer("hello world", Utf8))
       Future.value(response)
     }
@@ -85,7 +82,6 @@ Trace.record("do stuff!")
       .codec(Http())
       .bindTo(new InetSocketAddress(8082))
       .name("httpserver")
-      .tracer(ZipkinTracer.mk())
       .build(myService)
   }
 }
